@@ -43,16 +43,17 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Container(
-                  height: screen_size_height * .2,
-                  width: screen_size_width,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: const [
-                      ImageCard(cardImg: "assets/images/braid4.jpg"),
-                      SizedBox(width: 10),
-                      ImageCard(cardImg: "assets/images/braid3.jpg"),
-                    ],
-                  )),
+                height: screen_size_height * .2,
+                width: screen_size_width,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: const [
+                    ImageCard(cardImg: "assets/images/braid4.jpg"),
+                    SizedBox(width: 10),
+                    ImageCard(cardImg: "assets/images/braid3.jpg"),
+                  ],
+                ),
+              ),
               const SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +61,7 @@ class _HomePageState extends State<HomePage> {
                 children: <Widget>[
                   Expanded(
                     child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
+                      onTap: () => Navigator.pushNamed(context, "/getproduct"),
                       child: const MyColumn(
                         columnImg: "assets/images/braid.png",
                         columnTxt: "Braids",

@@ -17,12 +17,13 @@ class _ImageCardState extends State<ImageCard> {
       width: MediaQuery.of(context).size.width * .8,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(20)),
-          image: DecorationImage(
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.4), BlendMode.darken),
-              image: AssetImage(widget.cardImg!),
-              fit: BoxFit.cover)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.4), BlendMode.darken),
+            image: AssetImage(widget.cardImg!),
+            fit: BoxFit.cover),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,

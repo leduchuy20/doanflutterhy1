@@ -8,6 +8,8 @@ import 'intro.dart';
 import 'home.dart';
 import 'book.dart';
 import 'onscreen/onscreen.dart';
+import 'getallproduct/productpage.dart';
+import 'getallproduct/productpage.dart';
 
 void main() {
   runApp(
@@ -37,16 +39,16 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: IntroPage(),
-      home: OnScreen(),
-      // home: bottom(),
+      // home: OnScreen(),
+      home: bottom(),
+      // home: ProductPage(),
       routes: <String, WidgetBuilder>{
         UIData.homePageRoute: (BuildContext context) => HomePage(),
         UIData.introPageRoute: (BuildContext context) => IntroPage(),
         UIData.bookPageRoute: (BuildContext context) => BookPage(),
-        "/bottomhomepage": (context) => bottom()
+        "/bottomhomepage": (context) => bottom(),
+        "/getproduct": (BuildContext context) => const ProductPage(),
       },
-
-      ///dcscs
     );
   }
 }
