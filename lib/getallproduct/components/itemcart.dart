@@ -48,7 +48,13 @@ class ItemCart extends StatelessWidget {
           // ),
           // ),
         ),
-        Text(product!.title),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Text(
+            product!.title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
         Text("\$${product!.price}")
       ],
     );

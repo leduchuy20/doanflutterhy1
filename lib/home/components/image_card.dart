@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'button2.dart';
+import '../../components/button2.dart';
 
 class ImageCard extends StatefulWidget {
   final String? cardImg;

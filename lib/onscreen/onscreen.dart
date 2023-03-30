@@ -3,7 +3,7 @@ import 'package:doan_flutter/onscreen/into_onscreen/page2.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/page3.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:doan_flutter/intro.dart';
+import 'package:doan_flutter/onscreen/into_onscreen/intro.dart';
 import 'package:doan_flutter/uidata.dart';
 
 class OnScreen extends StatefulWidget {

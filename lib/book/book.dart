@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'uidata.dart';
-import 'button.dart';
-import 'date_column.dart';
-import 'specialist_column_book.dart';
+import '../uidata.dart';
+import '../components/button.dart';
+import 'components/date_column.dart';
+import 'components/specialist_column_book.dart';
 
 class BookPage extends StatefulWidget {
   @override

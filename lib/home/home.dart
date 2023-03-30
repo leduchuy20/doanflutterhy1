@@ -1,9 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'uidata.dart';
-import 'image_card.dart';
-import 'my_column.dart';
-import 'specialist_column.dart';
+import '../uidata.dart';
+import 'components/image_card.dart';
+import 'components/my_column.dart';
+import 'components/specialist_column.dart';
 
 class HomePage extends StatefulWidget {
   @override

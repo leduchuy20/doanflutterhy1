@@ -1,5 +1,5 @@
 import 'package:doan_flutter/getallproduct/components/itemcart.dart';
-import 'package:doan_flutter/image_card.dart';
+import 'package:doan_flutter/home/components/image_card.dart';
 import 'package:doan_flutter/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,7 @@ class Body extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

@@ -8,7 +8,7 @@ class Page2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenPageItem(
-          image: "assets/images/relax.png",
+          image: "https://assets7.lottiefiles.com/packages/lf20_s00z9gco.json",
           title: "Title 2",
           text: "Lựa chọn spa phù hợp"),
     );

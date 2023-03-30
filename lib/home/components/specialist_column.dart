@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'uidata.dart';
+import '../../uidata.dart';
 
 class SpecialistColumn extends StatelessWidget {
   final String? specImg, specName;

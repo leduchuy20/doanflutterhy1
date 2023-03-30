@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:salon_app/uidata.dart';
 // import 'package:salon_app/widgets/button.dart';
 import 'package:doan_flutter/btnavigator/bottom.dart';
-import 'uidata.dart';
-import 'button.dart';
+import '../../uidata.dart';
+import '../../components/button.dart';
 
 class IntroPage extends StatefulWidget {
   @override

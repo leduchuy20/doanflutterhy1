@@ -13,7 +13,7 @@ class Product {
 List<Product> products = [
   Product(
       id: 1,
-      title: "title1",
+      title: "dieu tri nghung",
       des: "des1",
       price: 232,
       image: "assets/images/spa1.png"),
