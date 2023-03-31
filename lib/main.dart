@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/cart/cartpage.dart';
+import 'package:doan_flutter/favourite/favouritepage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,7 +50,8 @@ class MyApp extends StatelessWidget {
         UIData.bookPageRoute: (BuildContext context) => BookPage(),
         "/bottomhomepage": (context) => bottom(),
         "/getproduct": (BuildContext context) => const ProductPage(),
-        "/cart": (context) => CartPage()
+        "/cart": (context) => CartPage(),
+        "/favourite": (context) => FavouritePage()
       },
     );
   }

@@ -1,4 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:doan_flutter/accountinfo/accountifopage.dart';
+import 'package:doan_flutter/favourite/favouritepage.dart';
 import 'package:flutter/material.dart';
 import 'package:doan_flutter/home/home.dart';
 import 'package:doan_flutter/test1.dart';
@@ -41,8 +43,8 @@ class _bottomState extends State<bottom> {
   Widget build(BuildContext context) {
     List screen = [
       HomePage(),
-      BookPage(),
-      ProductPage(),
+      FavouritePage(),
+      AccountInfoPage(),
     ];
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
