@@ -20,8 +20,11 @@ class ProductPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+            onPressed: () {
+              Navigator.pushNamed(context, "/search");
+            },
+            icon: Hero(
+                tag: "search", child: FaIcon(FontAwesomeIcons.magnifyingGlass)),
             color: Colors.black,
           ),
           SizedBox(

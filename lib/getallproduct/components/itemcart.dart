@@ -55,7 +55,10 @@ class ItemCart extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        Text("\$${product!.price}")
+        Text("\$${product!.price}"),
+        SizedBox(
+          height: 10.0,
+        ),
       ],
     );
   }
