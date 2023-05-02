@@ -1,4 +1,5 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:doan_flutter/accountinfo/editprofile/editprofileform.dart';
 import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/cart/cartpage.dart';
 import 'package:doan_flutter/favourite/favouritepage.dart';
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
         "/getproduct": (BuildContext context) => const ProductPage(),
         "/cart": (context) => CartPage(),
         "/favourite": (context) => FavouritePage(),
-        "/search": (context) => Search()
+        "/search": (context) => Search(),
+        "/editprofile": (context) => EditProfileForm()
       },
     );
   }

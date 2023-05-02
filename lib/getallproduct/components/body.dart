@@ -24,6 +24,9 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
+        Divider(
+          color: Colors.pink,
+        ),
         const SizedBox(
           height: 10,
         ),
