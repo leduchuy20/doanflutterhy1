@@ -92,7 +92,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   onPressed: () {
                     // Navigate to home screen
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => SinginPage()),
                     );
                   },
                   child: Text('Get Started'),
@@ -103,7 +103,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                         onPressed: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                                builder: (context) => IntroPage()),
+                                builder: (context) => SinginPage()),
                           );
                         },
                         child: Text('Done'),
@@ -127,7 +127,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               onPressed: () {
                 // Navigate to home screen
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => IntroPage()),
+                  MaterialPageRoute(builder: (context) => SinginPage()),
                 );
               },
               child: Text('Skip'),

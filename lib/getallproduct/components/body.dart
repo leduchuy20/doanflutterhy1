@@ -24,11 +24,26 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(
+          height: 20,
+        ),
+        Divider(
+          color: Colors.pink,
+        ),
+        Center(
+          child: SizedBox(
+            height: 36,
+            child: Text(
+              "Category",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
         Divider(
           color: Colors.pink,
         ),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
         Expanded(
           child: Padding(
