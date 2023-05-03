@@ -1,6 +1,8 @@
 import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/sign_up/signuppage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,6 +13,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _password = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -129,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 50,
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: _submitForm,
+                              onPressed: signIn,
                               child: Text('Login'),
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.pink.shade200,
@@ -179,5 +189,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  Future signIn() async {
+    try {
+      if (_formKey.currentState!.validate()) {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: _email.text.trim(), password: _password.text.trim());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => bottom(),
+          ),
+        );
+        Fluttertoast.showToast(
+            msg: "dang nhap thanh cong", gravity: ToastGravity.BOTTOM);
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(
+            msg: "tai khaon khong ton tai", gravity: ToastGravity.BOTTOM);
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(
+            msg: "mat khau khong dung", gravity: ToastGravity.BOTTOM);
+      }
+    }
+    // navigatorkey.currentState!.popUntil((route) => route.isFirst);
   }
 }

@@ -2,6 +2,7 @@ import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/home/home.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/intro.dart';
 import 'package:doan_flutter/sign_in/sgininpage.dart';
+import 'package:doan_flutter/sign_in/siginform.dart';
 import 'package:flutter/material.dart';
 
 class GetStartedScreen extends StatefulWidget {

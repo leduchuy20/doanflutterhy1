@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,7 +10,7 @@ class EditProfileForm extends StatefulWidget {
 }
 
 class _EditProfileFormState extends State<EditProfileForm> {
-  final user = TextEditingController();
+  final fullname = TextEditingController();
   final email = TextEditingController();
   final phone = TextEditingController();
   final age = TextEditingController();
@@ -89,8 +90,8 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         height: 10,
                       ),
                       EditProfileItem(
-                        controller: user,
-                        user: 'User',
+                        controller: fullname,
+                        user: 'fullname',
                         icon: Icon(Icons.person_2_outlined),
                       ),
                       SizedBox(

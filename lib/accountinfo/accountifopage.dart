@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -93,7 +94,10 @@ class AccountInfoPage extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.pushNamed(context, "/singin");
+                    },
                     leading: Container(
                       height: 40,
                       width: 40,

@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:doan_flutter/getallproduct/productpage.dart';
+import 'package:doan_flutter/models/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../uidata.dart';
@@ -12,6 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final CollectionReference _categoryRef =
+      FirebaseFirestore.instance.collection('categories');
   @override
   Widget build(BuildContext context) {
     final screen_size_width = MediaQuery.of(context).size.width;
@@ -67,105 +72,153 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () => Navigator.pushNamed(context, "/getproduct"),
-                      child: const MyColumn(
-                        columnImg: "assets/images/braid.png",
-                        columnTxt: "Braids",
-                        columnBg: UIData.lightColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/abuja.png",
-                        columnTxt: "Abuja",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/blow.png",
-                        columnTxt: "Blowdry",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/haircut.png",
-                        columnTxt: "Haircut",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                ],
+              StreamBuilder<QuerySnapshot>(
+                stream: _categoryRef.snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  final categories = snapshot.data!.docs
+                      .map((doc) => Categories.fromFirestore(doc))
+                      .toList();
+                  return GridView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    primary: false,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 0.7),
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Categories cate = categories[index];
+                      return GestureDetector(
+                        onTap: () {
+                          //FIXME: page 38
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductPage(
+                                      categoryId: cate.cateid,
+                                    )),
+                          );
+                        },
+                        child: MyColumn(
+                          columnImg: cate.image,
+                          columnTxt: cate.title,
+                          columnBg: UIData.lighterColor,
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/relaxer.png",
-                        columnTxt: "Relaxer",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/shampoo.png",
-                        columnTxt: "Shampoo",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/nail.png",
-                        columnTxt: "Manicure",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () =>
-                          Navigator.pushNamed(context, UIData.bookPageRoute),
-                      child: const MyColumn(
-                        columnImg: "assets/images/more.png",
-                        columnTxt: "More",
-                        columnBg: UIData.lighterColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const SizedBox(height: 15),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   mainAxisSize: MainAxisSize.max,
+              //   children: <Widget>[
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () => Navigator.pushNamed(context, "/getproduct"),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/braid.png",
+              //           columnTxt: "Braids",
+              //           columnBg: UIData.lightColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/abuja.png",
+              //           columnTxt: "Abuja",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/blow.png",
+              //           columnTxt: "Blowdry",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/haircut.png",
+              //           columnTxt: "Haircut",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   mainAxisSize: MainAxisSize.max,
+              //   children: <Widget>[
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/relaxer.png",
+              //           columnTxt: "Relaxer",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/shampoo.png",
+              //           columnTxt: "Shampoo",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/nail.png",
+              //           columnTxt: "Manicure",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: InkWell(
+              //         onTap: () =>
+              //             Navigator.pushNamed(context, UIData.bookPageRoute),
+              //         child: const MyColumn(
+              //           columnImg: "assets/images/more.png",
+              //           columnTxt: "More",
+              //           columnBg: UIData.lighterColor,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 6),
               Row(
                   mainAxisAlignment: MainAxisAlignment.center,

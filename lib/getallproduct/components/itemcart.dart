@@ -2,7 +2,7 @@ import 'package:doan_flutter/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ItemCart extends StatelessWidget {
-  final Product? product;
+  final Products? product;
   final Function? press;
   const ItemCart({
     super.key,

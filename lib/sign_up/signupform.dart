@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_flutter/sign_in/sgininpage.dart';
 import 'package:doan_flutter/sign_in/siginform.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../btnavigator/bottom.dart';
 
@@ -17,6 +20,16 @@ class _SignUpFormState extends State<SignUpForm> {
   final _password = TextEditingController();
   final phone = TextEditingController();
   final confirmpassword = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _email.dispose();
+    _password.dispose();
+    phone.dispose();
+    confirmpassword.dispose();
+    super.dispose();
+  }
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
@@ -196,7 +209,7 @@ class _SignUpFormState extends State<SignUpForm> {
                                 height: 50,
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                  onPressed: _submitForm,
+                                  onPressed: signUp,
                                   child: Text('Sign Up'),
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.pink.shade200,
@@ -218,7 +231,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                     onPressed: () {
                                       Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
-                                            builder: (context) => SinginPage()),
+                                            builder: (context) =>
+                                                LoginScreen()),
                                       );
                                     },
                                     child: Text(
@@ -248,5 +262,57 @@ class _SignUpFormState extends State<SignUpForm> {
         ],
       ),
     );
+  }
+
+  Future signUp() async {
+    try {
+      if (PassConfirmed() && _formKey.currentState!.validate()) {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: _email.text.trim(), password: _password.text.trim());
+
+        User? user = userCredential.user;
+        String uid = userCredential.user!.uid;
+        if (user != null) {
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .set({
+            "email": _email.text.trim(),
+            "password": _password.text.trim(),
+            "id": user.uid,
+            "phone": phone.text.trim(),
+            "fullname": "",
+            "age": "",
+            "image": ""
+          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => bottom(),
+            ),
+          );
+        }
+        // add user info
+        // UserInfo(
+        //   firstnamecontroller.text.trim(),
+        //   lastnamecontroller.text.trim(),
+        //   email.text.trim(),
+        //   int.parse(agecontroller.text.trim()),
+        // );
+      } else {
+        Fluttertoast.showToast(msg: "2 mat khau khong trung khop");
+      }
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(msg: e.message!, gravity: ToastGravity.BOTTOM);
+    }
+  }
+
+  bool PassConfirmed() {
+    if (_password.text.trim() == confirmpassword.text.trim()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

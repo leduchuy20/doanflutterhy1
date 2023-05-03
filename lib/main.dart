@@ -6,6 +6,8 @@ import 'package:doan_flutter/favourite/favouritepage.dart';
 import 'package:doan_flutter/search/search.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/getstartpage.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/splashscreen.dart';
+import 'package:doan_flutter/sign_in/siginform.dart';
+import 'package:doan_flutter/sign_up/signupform.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,15 +18,12 @@ import 'book/book.dart';
 import 'onscreen/test/onscreen.dart';
 import 'getallproduct/productpage.dart';
 import 'getallproduct/productpage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) => const MyApp(), // Wrap your app
-    // ),
-    const MyApp(),
-  );
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -56,11 +55,12 @@ class MyApp extends StatelessWidget {
         UIData.introPageRoute: (BuildContext context) => IntroPage(),
         UIData.bookPageRoute: (BuildContext context) => BookPage(),
         "/bottomhomepage": (context) => bottom(),
-        "/getproduct": (BuildContext context) => const ProductPage(),
+        // "/getproduct": (BuildContext context) => const ProductPage(),
         "/cart": (context) => CartPage(),
         "/favourite": (context) => FavouritePage(),
         "/search": (context) => Search(),
-        "/editprofile": (context) => EditProfileForm()
+        "/editprofile": (context) => EditProfileForm(),
+        "/singin": (context) => LoginScreen(),
       },
     );
   }

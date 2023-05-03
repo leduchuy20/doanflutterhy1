@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728132364869",
+    "project_id": "spaproject-4dc4a",
+    "storage_bucket": "spaproject-4dc4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728132364869:android:1486a04428257381ecd12c",
+        "android_client_info": {
+          "package_name": "com.example.doan_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728132364869-0393ivrknigmgdf54lhvrvmfqtbtjhtt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChqIisOtTEnPjo2UBcc0CHjEAmvVfrv94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728132364869-0393ivrknigmgdf54lhvrvmfqtbtjhtt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

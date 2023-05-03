@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_flutter/getallproduct/components/itemcart.dart';
 import 'package:doan_flutter/home/components/image_card.dart';
 import 'package:doan_flutter/models/product.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
-  const Body({super.key});
+  final String? categoryId;
+  Body({super.key, this.categoryId});
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +50,36 @@ class Body extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.75,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20),
-              itemCount: products.length,
-              itemBuilder: (BuildContext context, int index) => ItemCart(
-                product: products[index],
-              ),
-            ),
+            child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('products')
+                    .where('cateid', isEqualTo: categoryId)
+                    .snapshots(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  final products = snapshot.data!.docs
+                      .map((doc) => Products.fromFirestore(doc))
+                      .toList();
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.75,
+                            mainAxisSpacing: 20,
+                            crossAxisSpacing: 20),
+                    itemCount: 2,
+                    itemBuilder: (BuildContext context, int index) => ItemCart(
+                      product: products[index],
+                    ),
+                  );
+                }
+                // ),(
+                ),
           ),
         ),
       ],
