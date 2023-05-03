@@ -4,6 +4,8 @@ import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/cart/cartpage.dart';
 import 'package:doan_flutter/favourite/favouritepage.dart';
 import 'package:doan_flutter/search/search.dart';
+import 'package:doan_flutter/onscreen/into_onscreen/getstartpage.dart';
+import 'package:doan_flutter/onscreen/into_onscreen/splashscreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,7 +13,7 @@ import 'uidata.dart';
 import 'onscreen/into_onscreen/intro.dart';
 import 'home/home.dart';
 import 'book/book.dart';
-import 'onscreen/onscreen.dart';
+import 'onscreen/test/onscreen.dart';
 import 'getallproduct/productpage.dart';
 import 'getallproduct/productpage.dart';
 
@@ -45,7 +47,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // home: IntroPage(),
-      home: OnScreen(),
+      // home: OnScreen(),
+      home: SplashScreen(),
       // home: bottom(),
       // home: ProductPage(),
       routes: <String, WidgetBuilder>{

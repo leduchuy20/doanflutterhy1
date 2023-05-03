@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class FavouritePage extends StatelessWidget {
   const FavouritePage({super.key});
@@ -7,10 +6,7 @@ class FavouritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Lottie.network(
-            "https://assets10.lottiefiles.com/packages/lf20_ZKUJ2j.json"),
-      ),
+      body: Center(child: Text("data")),
     );
   }
 }

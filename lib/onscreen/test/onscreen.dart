@@ -1,6 +1,6 @@
-import 'package:doan_flutter/onscreen/into_onscreen/page1.dart';
-import 'package:doan_flutter/onscreen/into_onscreen/page2.dart';
-import 'package:doan_flutter/onscreen/into_onscreen/page3.dart';
+import 'package:doan_flutter/onscreen/test/page1.dart';
+import 'package:doan_flutter/onscreen/test/page2.dart';
+import 'package:doan_flutter/onscreen/test/page3.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/intro.dart';

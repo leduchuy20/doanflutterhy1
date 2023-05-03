@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../uidata.dart';
 import 'components/image_card.dart';
 import 'components/my_column.dart';
@@ -22,16 +23,27 @@ class _HomePageState extends State<HomePage> {
         leading: IconButton(
             icon: const Icon(Icons.short_text, color: Colors.black87),
             onPressed: () {}),
-        actions: <Widget>[
-          Container(
-            decoration: const BoxDecoration(),
-            margin: const EdgeInsets.only(right: 15, top: 15),
-            child: const CircleAvatar(
-              radius: 22,
-              backgroundImage: AssetImage(
-                "assets/images/profile.jpg",
-              ),
-            ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/search");
+            },
+            icon: Hero(
+                tag: "search", child: FaIcon(FontAwesomeIcons.magnifyingGlass)),
+            color: Colors.black,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, "/cart");
+            },
+            icon: FaIcon(FontAwesomeIcons.cartShopping),
+            color: Colors.black,
+          ),
+          SizedBox(
+            width: 10,
           ),
         ],
       ),

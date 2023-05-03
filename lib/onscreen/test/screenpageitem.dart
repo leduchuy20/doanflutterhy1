@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class ScreenPageItem extends StatelessWidget {
   String image;
@@ -21,7 +20,7 @@ class ScreenPageItem extends StatelessWidget {
             width: double.infinity,
             // decoration:
             //     BoxDecoration(image: DecorationImage(image: AssetImage(image))),
-            child: Lottie.network(image),
+            child: Text(image),
             height: 500,
           ),
           Text(title,
