@@ -1,26 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EditProfileForm extends StatefulWidget {
-  const EditProfileForm({super.key});
+  final String? userId;
+  final String? email;
+  const EditProfileForm({super.key, this.userId, this.email});
 
   @override
   State<EditProfileForm> createState() => _EditProfileFormState();
 }
 
 class _EditProfileFormState extends State<EditProfileForm> {
+  String user = '';
+  String email = '';
   final fullname = TextEditingController();
-  final email = TextEditingController();
   final phone = TextEditingController();
   final age = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    user = widget.userId!;
+    email = widget.email!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Edit Profile",
+          "Edit Profile $user",
           style: TextStyle(color: Colors.black),
         ),
         leading: IconButton(
@@ -81,10 +96,23 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      EditProfileItem(
-                        controller: email,
-                        user: 'Email',
-                        icon: Icon(Icons.email_outlined),
+                      TextFormField(
+                        initialValue: email,
+                        enabled: false,
+                        decoration: InputDecoration(
+                          label: Text("Email"),
+                          prefixIcon: Icon(Icons.email_outlined),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(100)),
+                          labelStyle: TextStyle(color: Colors.black),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(100),
+                            borderSide: BorderSide(
+                              color: Colors.pink,
+                              width: 2,
+                            ),
+                          ),
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -119,7 +147,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
                         child: Hero(
                           tag: "edit",
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              updateUserInfo(user, fullname.text.trim(),
+                                  int.parse(age.text), phone.text.trim());
+                            },
                             child: Text("Edit Profile"),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.pink.shade200,
@@ -175,6 +206,27 @@ class _EditProfileFormState extends State<EditProfileForm> {
         ),
       ),
     );
+  }
+
+  Future<void> updateUserInfo(
+      String userId, String fullname, int age, String phone) async {
+    try {
+      await FirebaseFirestore.instance.collection("users").doc(userId).update({
+        'fullname': fullname,
+        'age': age,
+        'phone': phone,
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => bottom(),
+        ),
+      );
+      Fluttertoast.showToast(
+          msg: "Bạn Đã Cập Nhật Thành Công", gravity: ToastGravity.BOTTOM);
+    } catch (error) {
+      print('Error updating user info: $error');
+    }
   }
 }
 
