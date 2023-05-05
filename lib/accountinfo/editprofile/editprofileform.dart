@@ -17,6 +17,7 @@ class EditProfileForm extends StatefulWidget {
 class _EditProfileFormState extends State<EditProfileForm> {
   String user = '';
   String email = '';
+  final formkey = GlobalKey<FormState>();
   final fullname = TextEditingController();
   final phone = TextEditingController();
   final age = TextEditingController();
@@ -93,6 +94,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 20),
                 child: Form(
+                  key: formkey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -148,8 +150,10 @@ class _EditProfileFormState extends State<EditProfileForm> {
                           tag: "edit",
                           child: ElevatedButton(
                             onPressed: () {
-                              updateUserInfo(user, fullname.text.trim(),
-                                  int.parse(age.text), phone.text.trim());
+                              if (formkey.currentState!.validate()) {
+                                updateUserInfo(user, fullname.text.trim(),
+                                    int.parse(age.text), phone.text.trim());
+                              }
                             },
                             child: Text("Edit Profile"),
                             style: ElevatedButton.styleFrom(
@@ -243,6 +247,11 @@ class EditProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Please Enter Data ";
+        }
+      },
       controller: controller,
       decoration: InputDecoration(
         label: Text(user),

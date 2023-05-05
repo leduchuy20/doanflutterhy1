@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_flutter/accountinfo/editprofile/editprofileform.dart';
+import 'package:doan_flutter/accountinfo/resetpw/resetpasswordpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -130,6 +131,41 @@ class AccountInfoPage extends StatelessWidget {
                     Divider(
                       color: Colors.pink.shade200,
                     ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetPasswordPage(),
+                          ),
+                        );
+                      },
+                      leading: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.blue.withOpacity(0.1),
+                        ),
+                        child: Icon(Icons.password),
+                      ),
+                      title: Text(
+                        "Reset Password",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      trailing: Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.blue.withOpacity(0.1),
+                        ),
+                        child: Icon(Icons.arrow_forward_sharp),
+                      ),
+                    ),
                     Expanded(
                       child: Align(
                         alignment: Alignment.bottomCenter,
@@ -148,7 +184,7 @@ class AccountInfoPage extends StatelessWidget {
                             child: Icon(Icons.cottage),
                           ),
                           title: Text(
-                            "LogOut",
+                            "Log Out",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,

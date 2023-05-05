@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_flutter/book/book.dart';
 import 'package:doan_flutter/getallproduct/components/body.dart';
 import 'package:doan_flutter/getallproduct/components/itemcart.dart';
 import 'package:doan_flutter/home/components/image_card.dart';
@@ -119,6 +120,14 @@ class ProductPage extends StatelessWidget {
                         //       arguments:
                         //           ProductDetailArguments(product: product));
                         // },
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BookPage(),
+                            ),
+                          );
+                        },
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
