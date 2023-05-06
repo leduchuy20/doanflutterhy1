@@ -58,7 +58,7 @@ class ProductPage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: const [
                 SizedBox(width: 20),
-                ImageCard(cardImg: "assets/images/spa1.png"),
+                ImageCard(cardImg: "assets/images/braid4.jpg"),
                 SizedBox(width: 20),
                 ImageCard(cardImg: "assets/images/spa2.png"),
               ],

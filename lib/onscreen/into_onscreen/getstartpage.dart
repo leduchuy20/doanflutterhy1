@@ -89,14 +89,23 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    // Navigate to home screen
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => SinginPage()),
-                    );
-                  },
-                  child: Text('Get Started'),
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigate to home screen
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => SinginPage()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.pink.shade200,
+                        shape: StadiumBorder()),
+                    child: Text(
+                      'Get Started',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 SizedBox(height: 16.0),
                 checkLastPage
@@ -107,7 +116,12 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                                 builder: (context) => SinginPage()),
                           );
                         },
-                        child: Text('Done'),
+                        child: Text(
+                          'Done',
+                          style: TextStyle(
+                              color: Colors.pink.shade200,
+                              fontWeight: FontWeight.bold),
+                        ),
                       )
                     : TextButton(
                         onPressed: () {
@@ -116,7 +130,15 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                             curve: Curves.ease,
                           );
                         },
-                        child: Text('Next'),
+                        child: Text(
+                          'Next',
+                          style: TextStyle(
+                              color: Colors.pink.shade200,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(
+                            shape: StadiumBorder(),
+                            foregroundColor: Colors.redAccent),
                       ),
               ],
             ),
@@ -131,7 +153,12 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   MaterialPageRoute(builder: (context) => SinginPage()),
                 );
               },
-              child: Text('Skip'),
+              child: Text(
+                'Skip',
+                style: TextStyle(
+                    color: Colors.pink.shade200, fontWeight: FontWeight.bold),
+              ),
+              style: TextButton.styleFrom(foregroundColor: Colors.redAccent),
             ),
           ),
           Positioned(
@@ -161,7 +188,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
       height: active ? 16.0 : 8.0,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: active ? Colors.blue : Colors.grey,
+        color: active ? Colors.pink.shade200 : Colors.grey,
       ),
     );
   }
