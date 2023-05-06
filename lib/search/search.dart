@@ -36,110 +36,115 @@ class _SearchState extends State<Search> {
             color: Colors.black,
           ),
         ),
-        body: Padding(
+        body: Container(
           padding: EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Search For Spa",
-                style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              TextField(
-                onChanged: (value) {
-                  setState(() {
-                    searchQuery = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide:
-                          BorderSide(color: Colors.pink.shade200, width: 2)),
-                  hintText: "Input Text",
-                  prefixIcon: Hero(
-                      tag: "search",
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                        size: 30,
-                      )),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Search For Spa",
+                  style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Divider(
-                color: Colors.pink.shade200,
-              ),
-              StreamBuilder<QuerySnapshot>(
-                  stream: productspre.snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasError) {
-                      return Text('Something went wrong');
-                    }
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      searchQuery = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide:
+                            BorderSide(color: Colors.pink.shade200, width: 2)),
+                    hintText: "Input Text",
+                    prefixIcon: Hero(
+                        tag: "search",
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.black,
+                          size: 30,
+                        )),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Divider(
+                  color: Colors.pink.shade200,
+                ),
+                StreamBuilder<QuerySnapshot>(
+                    stream: productspre.snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Something went wrong');
+                      }
 
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    var products = snapshot.data!.docs
-                        .map((doc) => Products.fromFirestore(doc))
-                        .toList();
-                    // final searchResults = products
-                    //     .where((product) => product.title!
-                    //         .toString()
-                    //         .toLowerCase()
-                    //         .contains(searchQuery.toLowerCase()))
-                    //     .toList();
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      var products = snapshot.data!.docs
+                          .map((doc) => Products.fromFirestore(doc))
+                          .toList();
+                      // final searchResults = products
+                      //     .where((product) => product.title!
+                      //         .toString()
+                      //         .toLowerCase()
+                      //         .contains(searchQuery.toLowerCase()))
+                      //     .toList();
 
-                    products = products
-                        .where((product) => product.title!
-                            .toString()
-                            .toLowerCase()
-                            .contains(searchQuery.toLowerCase()))
-                        .toList();
-                    return ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      primary: false,
-                      itemCount: products.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        Products pro = products[index];
+                      products = products
+                          .where((product) => product.title!
+                              .toString()
+                              .toLowerCase()
+                              .contains(searchQuery.toLowerCase()))
+                          .toList();
+                      return ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        primary: false,
+                        itemCount: products.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Products pro = products[index];
 
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20.0),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => BookPage(),
+                          return SingleChildScrollView(
+                            padding: EdgeInsets.symmetric(vertical: 20.0),
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BookPage(),
+                                  ),
+                                );
+                              },
+                              leading: Container(
+                                  height: 50,
+                                  width: 80,
+                                  child: Image.asset(pro.image)),
+                              title: Text(
+                                pro.title,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
                                 ),
-                              );
-                            },
-                            leading: Image.asset(pro.image),
-                            title: Text(
-                              pro.title,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
                               ),
+                              trailing: Text(pro.price.toString()),
                             ),
-                            trailing: Text(pro.price.toString()),
-                          ),
-                        );
-                      },
-                    );
-                  })
-            ],
+                          );
+                        },
+                      );
+                    })
+              ],
+            ),
           ),
         ));
   }
