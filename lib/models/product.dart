@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Products {
   String image, title, des;
-  int id;
+  int id, cateid;
   double price;
 
   Products(
       {required this.id,
+      required this.cateid,
       required this.title,
       required this.des,
       required this.price,
@@ -16,6 +17,7 @@ class Products {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Products(
       id: data["id"],
+      cateid: data["cateid"],
       title: data['title'],
       des: data["des"],
       image: data['image'],

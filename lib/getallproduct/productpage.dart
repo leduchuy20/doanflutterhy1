@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_flutter/book/book.dart';
+import 'package:doan_flutter/detail/detailpage.dart';
 import 'package:doan_flutter/getallproduct/components/body.dart';
 import 'package:doan_flutter/getallproduct/components/itemcart.dart';
 import 'package:doan_flutter/home/components/image_card.dart';
@@ -70,18 +71,18 @@ class ProductPage extends StatelessWidget {
           Divider(
             color: Colors.pink,
           ),
-          Center(
-            child: SizedBox(
-              height: 36,
-              child: Text(
-                "Category",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Divider(
-            color: Colors.pink,
-          ),
+          // Center(
+          //   child: SizedBox(
+          //     height: 36,
+          //     child: Text(
+          //       "Category",
+          //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          //     ),
+          //   ),
+          // ),
+          // Divider(
+          //   color: Colors.pink,
+          // ),
           const SizedBox(
             height: 20,
           ),
@@ -103,6 +104,7 @@ class ProductPage extends StatelessWidget {
                   final products = snapshot.data!.docs
                       .map((doc) => Products.fromFirestore(doc))
                       .toList();
+                  // final iddoc = snapshot.data!.docs.map<Widget>();
                   return GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -113,6 +115,8 @@ class ProductPage extends StatelessWidget {
                     itemCount: products.length,
                     itemBuilder: (context, int index) {
                       Products product = products[index];
+
+                      // final product1 = products[index];
                       return GestureDetector(
                         // onTap: () {
                         //   //FIXME: page 38
@@ -124,7 +128,9 @@ class ProductPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BookPage(),
+                              builder: (context) => DetailPage(
+                                product: products[index],
+                              ),
                             ),
                           );
                         },
@@ -135,16 +141,6 @@ class ProductPage extends StatelessWidget {
                               // child: Card(
                               child: Container(
                                 padding: EdgeInsets.all(20),
-                                // height: 180,
-                                // decoration: BoxDecoration(
-                                //   borderRadius: BorderRadius.circular(10),
-                                //   // color: Colors.black,
-                                //   // image: DecorationImage(
-                                //   //   image: Image.asset(product!.image).image,
-                                //   //   fit: BoxFit.cover,
-                                //   // ),
-                                // ),
-                                // color: Colors.black,
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(20)),
@@ -154,16 +150,7 @@ class ProductPage extends StatelessWidget {
                                       image: AssetImage(product.image),
                                       fit: BoxFit.fill),
                                 ),
-                                // child: Image.asset(product!.image),
                               ),
-                              // elevation: 0,
-                              // shape: RoundedRectangleBorder(
-                              //   side: BorderSide(
-                              //     color: Theme.of(context).colorScheme.surfaceVariant,
-                              //   ),
-                              //   borderRadius: const BorderRadius.all(Radius.circular(12)),
-                              // ),
-                              // ),
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),

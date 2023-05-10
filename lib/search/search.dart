@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doan_flutter/book/book.dart';
+import 'package:doan_flutter/detail/detailpage.dart';
 import 'package:doan_flutter/home/components/my_column.dart';
 import 'package:doan_flutter/models/product.dart';
 import 'package:doan_flutter/uidata.dart';
@@ -122,7 +123,9 @@ class _SearchState extends State<Search> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => BookPage(),
+                                    builder: (context) => DetailPage(
+                                      product: pro,
+                                    ),
                                   ),
                                 );
                               },
