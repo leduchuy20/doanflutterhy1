@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:doan_flutter/accountinfo/accountifopage.dart';
 import 'package:doan_flutter/favourite/favouritepage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:doan_flutter/home/home.dart';
 import 'package:doan_flutter/onscreen/into_onscreen/getstartpage.dart';
@@ -38,12 +39,15 @@ class bottom extends StatefulWidget {
 }
 
 class _bottomState extends State<bottom> {
+  final User = FirebaseAuth.instance.currentUser!;
   var selectIndex = 0;
   @override
   Widget build(BuildContext context) {
     List screen = [
       HomePage(),
-      FavouritePage(),
+      FavouritePage(
+        userid: User.uid,
+      ),
       AccountInfoPage(),
     ];
     return Scaffold(
@@ -57,7 +61,7 @@ class _bottomState extends State<bottom> {
           color: Colors.pink.shade200,
           items: [
             FaIcon(FontAwesomeIcons.house),
-            Icon(Icons.favorite),
+            Icon(Icons.history),
             Icon(Icons.account_circle)
           ]),
       body: screen[selectIndex],

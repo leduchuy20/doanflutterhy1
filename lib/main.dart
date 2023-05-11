@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         "/bottomhomepage": (context) => bottom(),
         // "/getproduct": (BuildContext context) => const ProductPage(),
         "/cart": (context) => CartPage(),
-        "/favourite": (context) => FavouritePage(),
+        // "/favourite": (context) => FavouritePage(),
         "/search": (context) => Search(),
         "/editprofile": (context) => EditProfileForm(),
         "/singin": (context) => LoginScreen(),
