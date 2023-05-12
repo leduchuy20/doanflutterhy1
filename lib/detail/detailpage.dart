@@ -302,7 +302,7 @@ class _DetailPageState extends State<DetailPage> {
                                                         height: 5,
                                                       ),
                                                       Text(
-                                                          "Anh/ Chị xác nhận rằng đẵ book :"),
+                                                          "Anh/ Chị xác nhận rằng đã book :"),
                                                       SizedBox(
                                                         height: 5,
                                                       ),

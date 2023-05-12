@@ -49,6 +49,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
         backgroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
+        reverse: true,
         child: Container(
           padding: EdgeInsets.all(30),
           child: Column(
