@@ -19,18 +19,19 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
     return [
       _buildPage(
         image: 'assets/images/spa1.png',
-        title: 'Welcome to My App',
-        description: 'This is the description of the app.',
+        title: 'Chào Mừng Đến Với TCH Spa',
+        description: 'Dịch Vụ Spa Tốt Nhất Hiện Nay.',
+      ),
+      _buildPage(
+        image: 'assets/images/spa2.png',
+        title: 'Kỹ Thuật Spa Tiên Tiến',
+        description: 'Hãy Đến Và Trải Nghiệm Dịch Vụ Của Chúng Tôi.',
       ),
       _buildPage(
         image: 'assets/images/spa3.png',
-        title: 'Features',
-        description: 'This is the description of the features.',
-      ),
-      _buildPage(
-        image: 'assets/images/spa3.png',
-        title: 'Get Started',
-        description: 'This is the description of how to get started.',
+        title: 'Nhân Viên Chăm Sóc Tận Tình',
+        description:
+            'Đảm Bảo Bạn Sẽ Có 1 Trải Nghiệm Tốt Hơn Bất Cứ Nơi Nào Khác.',
       ),
     ];
   }
