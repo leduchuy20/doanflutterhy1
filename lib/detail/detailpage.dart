@@ -83,7 +83,7 @@ class _DetailPageState extends State<DetailPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Price: ${widget.product.price}',
+                    'Giá tiền: ${widget.product.price.toString().replaceAll(".", "")} VND',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -295,7 +295,7 @@ class _DetailPageState extends State<DetailPage> {
                                                           16.0),
                                                 ),
                                                 title:
-                                                    Text('Xác nhận mua hàng'),
+                                                    Text('Xác nhận Đặt Lịch'),
                                                 content: SingleChildScrollView(
                                                   // reverse: true,
                                                   child: Column(
@@ -309,7 +309,11 @@ class _DetailPageState extends State<DetailPage> {
                                                       SizedBox(
                                                         height: 5,
                                                       ),
-                                                      Text(_name),
+                                                      Text(
+                                                        _name,
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
                                                       SizedBox(
                                                         height: 5,
                                                       ),
@@ -319,7 +323,10 @@ class _DetailPageState extends State<DetailPage> {
                                                         height: 5,
                                                       ),
                                                       Text(
-                                                          widget.product.title),
+                                                        widget.product.title,
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
                                                       SizedBox(
                                                         height: 5,
                                                       ),
@@ -327,8 +334,11 @@ class _DetailPageState extends State<DetailPage> {
                                                       SizedBox(
                                                         height: 5,
                                                       ),
-                                                      Text(widget.product.price
-                                                          .toString()),
+                                                      Text(
+                                                        "${widget.product.price.toString().replaceAll('.', '')} VND",
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
                                                       SizedBox(
                                                         height: 5,
                                                       ),
@@ -337,7 +347,10 @@ class _DetailPageState extends State<DetailPage> {
                                                         height: 5,
                                                       ),
                                                       Text(
-                                                          "${_selectedDate} ${_selectedTime.format(context)}"),
+                                                        "${_selectedDate} ${_selectedTime.format(context)}",
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      ),
                                                       SizedBox(
                                                         height: 5,
                                                       ),
@@ -346,7 +359,11 @@ class _DetailPageState extends State<DetailPage> {
                                                       SizedBox(
                                                         height: 5,
                                                       ),
-                                                      Text(_phoneNumber)
+                                                      Text(
+                                                        _phoneNumber,
+                                                        style: TextStyle(
+                                                            color: Colors.red),
+                                                      )
                                                     ],
                                                   ),
                                                 ),

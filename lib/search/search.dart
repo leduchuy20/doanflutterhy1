@@ -140,7 +140,8 @@ class _SearchState extends State<Search> {
                                   fontSize: 20,
                                 ),
                               ),
-                              trailing: Text(pro.price.toString()),
+                              trailing: Text(
+                                  "${pro.price.toString().replaceAll('.', '')} VND"),
                             ),
                           );
                         },

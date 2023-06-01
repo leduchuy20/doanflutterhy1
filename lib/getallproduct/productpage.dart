@@ -159,7 +159,8 @@ class ProductPage extends StatelessWidget {
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Text("\$${product.price}"),
+                            Text(
+                                "Giá Tiền: ${product.price.toString().replaceAll('.', '')} VND"),
                             SizedBox(
                               height: 10.0,
                             ),

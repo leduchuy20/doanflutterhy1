@@ -50,7 +50,7 @@ class DetailHistory extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              "Giá Tiền: ${orders!.price.toString()}",
+              "Giá Tiền: ${orders!.price.toString().replaceAll('.', '')} VND",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

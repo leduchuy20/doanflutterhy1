@@ -95,7 +95,7 @@ class FavouritePage extends StatelessWidget {
                                       ),
                                       SizedBox(height: 5),
                                       Text(
-                                        "Gía Tiền: ${product.price.toString()}",
+                                        "Giá tiền: ${product.price.toString().replaceAll('.', '')} VND",
                                         style: TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold,
