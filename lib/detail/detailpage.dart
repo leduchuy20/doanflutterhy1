@@ -378,41 +378,72 @@ class _DetailPageState extends State<DetailPage> {
                                                   ElevatedButton(
                                                     onPressed: () async {
                                                       DocumentReference docRef =
-                                                          await FirebaseFirestore
+                                                          FirebaseFirestore
                                                               .instance
                                                               .collection(
                                                                   "orders")
-                                                              .add({
-                                                        "proid":
-                                                            widget.product.id,
-                                                        "image": widget
-                                                            .product.image,
-                                                        "title": widget
-                                                            .product.title,
-                                                        "createday":
-                                                            DateTime.now(),
-                                                        "price": widget
-                                                            .product.price,
-                                                        "userid": user.uid,
-                                                        // "fullname":
-                                                        //     name.text.trim(),
-                                                        "fullname": _name,
-                                                        "sdt": _phoneNumber,
-                                                        // "sdt": sdt.text.trim(),
-                                                        "cateid": widget
-                                                            .product.cateid,
-                                                        "ngaydat":
-                                                            _selectedDate,
-                                                        "giodat": _selectedTime
-                                                            .format(context),
-                                                        // "id": document
-                                                      });
+                                                              .doc();
                                                       String orderId =
                                                           docRef.id;
                                                       await docRef.set(
-                                                          {"id": orderId},
+                                                          {
+                                                            "id": orderId,
+                                                            "proid": widget
+                                                                .product.id,
+                                                            "image": widget
+                                                                .product.image,
+                                                            "title": widget
+                                                                .product.title,
+                                                            "createday":
+                                                                DateTime.now(),
+                                                            "price": widget
+                                                                .product.price,
+                                                            "userid": user.uid,
+                                                            "fullname": _name,
+                                                            "sdt": _phoneNumber,
+                                                            "cateid": widget
+                                                                .product.cateid,
+                                                            "ngaydat":
+                                                                _selectedDate,
+                                                            "giodat":
+                                                                _selectedTime
+                                                                    .format(
+                                                                        context),
+                                                          },
                                                           SetOptions(
                                                               merge: true));
+                                                      // DocumentReference docRef =
+                                                      //     await FirebaseFirestore
+                                                      //         .instance
+                                                      //         .collection(
+                                                      //             "orders")
+                                                      //         .add({
+                                                      //   "proid":
+                                                      //       widget.product.id,
+                                                      //   "image": widget
+                                                      //       .product.image,
+                                                      //   "title": widget
+                                                      //       .product.title,
+                                                      //   "createday":
+                                                      //       DateTime.now(),
+                                                      //   "price": widget
+                                                      //       .product.price,
+                                                      //   "userid": user.uid,
+                                                      //   "fullname": _name,
+                                                      //   "sdt": _phoneNumber,
+                                                      //   "cateid": widget
+                                                      //       .product.cateid,
+                                                      //   "ngaydat":
+                                                      //       _selectedDate,
+                                                      //   "giodat": _selectedTime
+                                                      //       .format(context),
+                                                      // });
+                                                      // String orderId =
+                                                      //     docRef.id;
+                                                      // await docRef.set(
+                                                      //     {"id": orderId},
+                                                      //     SetOptions(
+                                                      //         merge: true));
                                                       Navigator.push(
                                                         context,
                                                         MaterialPageRoute(

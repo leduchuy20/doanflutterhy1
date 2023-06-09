@@ -20,6 +20,7 @@ class FavouritePage extends StatelessWidget {
           "History",
           style: TextStyle(color: Colors.black),
         ),
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance

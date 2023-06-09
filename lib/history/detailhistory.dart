@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:doan_flutter/btnavigator/bottom.dart';
 import 'package:doan_flutter/models/orders.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailHistory extends StatelessWidget {
   Orders? orders;
@@ -67,6 +70,28 @@ class DetailHistory extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 8),
+          SizedBox(
+            height: 40,
+            child: ElevatedButton(
+              onPressed: () {
+                FirebaseFirestore.instance
+                    .collection("orders")
+                    .doc(orders!.id)
+                    .delete()
+                    .then((value) {
+                  Fluttertoast.showToast(msg: "Delete Success");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => bottom(),
+                    ),
+                  );
+                });
+              },
+              child: Text("Huy dat lich"),
+            ),
+          )
         ],
       ),
     );
